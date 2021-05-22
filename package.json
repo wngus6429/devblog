@@ -1,0 +1,33 @@
+{
+  "name": "parkdevblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wngus6429/devblog.git"
+  },
+  "author": "ParkJuhyun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wngus6429/devblog/issues"
+  },
+  "homepage": "https://github.com/wngus6429/devblog#readme",
+  "dependencies": {
+    "next": "^9.5.5",
+    "prop-types": "^15.7.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-plugin-import": "^2.23.3",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  }
+}
