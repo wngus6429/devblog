@@ -1,7 +1,15 @@
 import React from "react";
+import Head from "next/head";
 
 const Signup = () => {
-  return <div>회원가입 페이지</div>;
+  return (
+    <>
+      <Head>
+        <title>会員登録</title>
+      </Head>
+      <div>会員登録ページ</div>
+    </>
+  );
 };
 
 export default Signup;
