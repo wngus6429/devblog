@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Link from "next/link";
 import { Input, Menu, Row, Col } from "antd";
 import SideMenu from "../pages/sidemenu";
 import "antd/dist/antd.css";
+import UserProfile from "./UserProfile";
+import LoginForm from "./LoginForm";
+import styled from "styled-components";
+
+{
+  /* <Input.Search style={{ marginTop: 7, textAlign: "center" }} placeholder="Input Search Text" enterButton /> */
+}
+const SearchInput = styled(Input.Search)`
+  margin-top: 7px;
+  text-align: center;
+`;
 
 const AppLayout = ({ children }) => {
+  const [isLoggedIn, setisLoggedIn] = useState(false);
   return (
     <>
       <Menu mode="horizontal" theme="dark">
@@ -20,7 +32,7 @@ const AppLayout = ({ children }) => {
           </Link>
         </Menu.Item>
         <Menu.Item>
-          <Input.Search style={{ marginTop: 7, textAlign: "center" }} placeholder="Input Search Text" enterButton />
+          <SearchInput placeholder="Input Search Text" enterButton />
         </Menu.Item>
         <Menu.Item>
           <Link href="/signup">
@@ -36,6 +48,7 @@ const AppLayout = ({ children }) => {
           {children}
         </Col>
         <Col xs={24} md={4}>
+          {isLoggedIn ? <UserProfile setisLoggedIn={setisLoggedIn} /> : <LoginForm setisLoggedIn={setisLoggedIn} />}
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/wngus6429?tab=repositories">
             GitHub
           </a>
