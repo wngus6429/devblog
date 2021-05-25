@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
-
+import Clock from "./clock";
 {
   /* <Input.Search style={{ marginTop: 7, textAlign: "center" }} placeholder="Input Search Text" enterButton /> */
 }
@@ -44,14 +44,15 @@ const AppLayout = ({ children }) => {
         <Col xs={24} md={8}>
           <SideMenu />
         </Col>
-        <Col xs={24} md={12}>
+        <Col xs={24} md={11}>
           {children}
         </Col>
-        <Col xs={24} md={4}>
+        <Col xs={24} md={5}>
           {isLoggedIn ? <UserProfile setisLoggedIn={setisLoggedIn} /> : <LoginForm setisLoggedIn={setisLoggedIn} />}
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/wngus6429?tab=repositories">
             GitHub
           </a>
+          <Clock />
         </Col>
       </Row>
     </>
