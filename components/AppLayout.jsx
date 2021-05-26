@@ -8,6 +8,7 @@ import UserProfile from "./UserProfile";
 import LoginForm from "./LoginForm";
 import styled from "styled-components";
 import Clock from "./clock";
+import Signup from "../pages/signup";
 {
   /* <Input.Search style={{ marginTop: 7, textAlign: "center" }} placeholder="Input Search Text" enterButton /> */
 }
@@ -18,6 +19,8 @@ const SearchInput = styled(Input.Search)`
 
 const AppLayout = ({ children }) => {
   const [isLoggedIn, setisLoggedIn] = useState(false);
+  const [signup, setsignup] = useState(false);
+
   return (
     <>
       <Menu mode="horizontal" theme="dark">
@@ -35,24 +38,30 @@ const AppLayout = ({ children }) => {
           <SearchInput placeholder="Input Search Text" enterButton />
         </Menu.Item>
         <Menu.Item>
-          <Link href="/signup">
-            <a>会員登録</a>
+          <Link href="ilbe.com">
+            <a>아씨몰라</a>
           </Link>
         </Menu.Item>
       </Menu>
       <Row gutter={5}>
         <Col xs={24} md={8}>
           <SideMenu />
+          <Clock />
         </Col>
         <Col xs={24} md={11}>
           {children}
         </Col>
         <Col xs={24} md={5}>
-          {isLoggedIn ? <UserProfile setisLoggedIn={setisLoggedIn} /> : <LoginForm setisLoggedIn={setisLoggedIn} />}
+          {signup ? (
+            <Signup signupfo={setsignup} />
+          ) : isLoggedIn ? (
+            <UserProfile setisLoggedIn={setisLoggedIn} />
+          ) : (
+            <LoginForm setisLoggedIn={setisLoggedIn} signupfo={setsignup} />
+          )}
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/wngus6429?tab=repositories">
             GitHub
           </a>
-          <Clock />
         </Col>
       </Row>
     </>

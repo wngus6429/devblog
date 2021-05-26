@@ -11,7 +11,7 @@ const LogForm = styled(Form)`
   padding: 10px;
 `;
 
-const LoginForm = ({ setisLoggedIn }) => {
+const LoginForm = ({ setisLoggedIn, signupfo }) => {
   const [id, setid] = useState("");
   const [password, setpassword] = useState("");
   const InputStyle = useMemo(
@@ -41,6 +41,10 @@ const LoginForm = ({ setisLoggedIn }) => {
   //htmlType="submit" 이 되어 있어야 위에 Form이 작동함 그리고 onFinish 가 호출이 된다
   //그리고 onFinish에는 e.preventDefault()가 이미 되어져 있음
 
+  const signupform = useCallback(() => {
+    signupfo(true);
+  });
+
   return (
     <>
       <LogForm onFinish={onSubmitForm}>
@@ -58,11 +62,9 @@ const LoginForm = ({ setisLoggedIn }) => {
           <Button type="primary" htmlType="submit">
             Login
           </Button>
-          <Link href="/signup">
-            <a>
-              <Button type="danger">会員登録</Button>
-            </a>
-          </Link>
+          <Button type="danger" onClick={signupform}>
+            会員登録
+          </Button>
         </ButtonWrap>
       </LogForm>
     </>
