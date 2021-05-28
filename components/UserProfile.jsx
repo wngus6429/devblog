@@ -2,13 +2,15 @@ import React, { useCallback, useState } from "react";
 import { Card, Avatar, Button, Popover } from "antd";
 import { EditOutlined, EllipsisOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
 import NicknameEdit from "./NicknameEdit";
-
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../Reducers/index";
 const { Meta } = Card;
 
-const UserProfile = ({ setisLoggedIn }) => {
+const UserProfile = () => {
+  const dispatch = useDispatch();
   const [userprofile, setuserprofile] = useState(false);
   const onLogOut = useCallback(() => {
-    setisLoggedIn(false);
+    dispatch(logoutAction());
   });
   const nicknameedit = useCallback(() => {
     setuserprofile(true);

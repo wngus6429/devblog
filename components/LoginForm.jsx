@@ -2,6 +2,8 @@ import React, { useCallback, useState, useMemo } from "react";
 import { Button, Form, Input } from "antd";
 import Link from "next/link";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { loginAction } from "../Reducers/index";
 
 const ButtonWrap = styled.div`
   margin-top: 5px; //css적듯이
@@ -11,7 +13,9 @@ const LogForm = styled(Form)`
   padding: 10px;
 `;
 
-const LoginForm = ({ setisLoggedIn, signupfo }) => {
+const LoginForm = ({ signupfo }) => {
+  const dispatch = useDispatch();
+
   const [id, setid] = useState("");
   const [password, setpassword] = useState("");
   const InputStyle = useMemo(
@@ -32,7 +36,7 @@ const LoginForm = ({ setisLoggedIn, signupfo }) => {
 
   const onSubmitForm = useCallback(() => {
     console.log(id, password);
-    setisLoggedIn(true);
+    dispatch(loginAction({ id, password }));
   }, [id, password]);
   //Saga 랑, reducer가 거의 동시에 실행된다 보면됨
   //강의 : saga 쪼개고 reducer와 연결하기 11분경

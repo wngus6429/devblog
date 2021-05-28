@@ -9,6 +9,7 @@ import LoginForm from "./LoginForm";
 import styled from "styled-components";
 import Clock from "./clock";
 import Signup from "../pages/signup";
+import { useSelector } from "react-redux";
 {
   /* <Input.Search style={{ marginTop: 7, textAlign: "center" }} placeholder="Input Search Text" enterButton /> */
 }
@@ -18,7 +19,9 @@ const SearchInput = styled(Input.Search)`
 `;
 
 const AppLayout = ({ children }) => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  //const [isLoggedIn, setisLoggedIn] = useState(false);
   const [signup, setsignup] = useState(false);
 
   return (
@@ -38,8 +41,8 @@ const AppLayout = ({ children }) => {
           <SearchInput placeholder="Input Search Text" enterButton />
         </Menu.Item>
         <Menu.Item>
-          <Link href="ilbe.com">
-            <a>아씨몰라</a>
+          <Link href="https://www.naver.com">
+            <a>네이버</a>
           </Link>
         </Menu.Item>
       </Menu>
@@ -52,13 +55,7 @@ const AppLayout = ({ children }) => {
           {children}
         </Col>
         <Col xs={24} md={5}>
-          {signup ? (
-            <Signup signupfo={setsignup} />
-          ) : isLoggedIn ? (
-            <UserProfile setisLoggedIn={setisLoggedIn} />
-          ) : (
-            <LoginForm setisLoggedIn={setisLoggedIn} signupfo={setsignup} />
-          )}
+          {signup ? <Signup signupfo={setsignup} /> : isLoggedIn ? <UserProfile /> : <LoginForm signupfo={setsignup} />}
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/wngus6429?tab=repositories">
             GitHub
           </a>

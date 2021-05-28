@@ -27,74 +27,63 @@ const Signup = ({ signupfo }) => {
   // }, []);
   const [PasswordError, setPasswordError] = useState(false); //비밀번호가 일치 하지 않으면 첫번쨰 true가 됨
   const [PasswordCheck, setPasswordCheck] = useState("");
-  const onChangePasswordCheck = useCallback(
-    (e) => {
-      setPasswordCheck(e.target.value);
-      setPasswordError(e.target.value !== Password);
-    },
-    [Password]
-  );
+
+  const onChangePasswordCheck = useCallback((e) => 
+  { setPasswordCheck(e.target.value);
+    setPasswordError(e.target.value !== Password); }, [Password] );
+    
   const [Term, setTerm] = useState("");
   const [TermError, setTermError] = useState(false);
-  const onChangeTerm = useCallback((e) => {
-    setTerm(e.target.checked);
-    setTermError(false);
-  }, []);
+  const onChangeTerm = useCallback((e) => 
+  { setTerm(e.target.checked);
+    setTermError(false);}, []);
 
   const onsubmit = useCallback(() => {
-    if (Password !== PasswordCheck) {
-      return setPasswordError(true);
-    }
-    if (!Term) {
-      return setTermError(true);
-    }
+    if (Password !== PasswordCheck) 
+    { return setPasswordError(true);}
+    if (!Term) 
+    { return setTermError(true);}
     console.log(Id, NickName, Password);
   }, [Password, PasswordCheck, Term]);
 
-  const signupform = () => {
-    signupfo(false);
-  };
+  const signupform = () => { signupfo(false);};
 
   return (
     <>
       <Head>
-        <title>회원가입</title>
+        <title>会員登録</title>
       </Head>
       <Form onFinish={onsubmit}>
         <div>
-          <label htmlFor="user-id">아이디</label>
+          <label htmlFor="user-id">ID</label>
           <br />
           <Input name="user-id" value={Id} onChange={onChangeId} />
         </div>
         <div>
-          <label htmlFor="user-id">닉네임</label>
+          <label htmlFor="user-id">NickName</label>
           <br />
           <Input name="user-id" value={NickName} onChange={onChangeNickName} />
         </div>
         <div>
-          <label htmlFor="user-password">비밀번호</label>
+          <label htmlFor="user-password">Password</label>
           <br />
           <Input name="user-password" type="password" value={Password} onChange={onChangePassword} required />
         </div>
         <div>
-          <label htmlFor="user-password">비밀번호 체크</label>
+          <label htmlFor="user-password">Password Check</label>
           <br />
           <Input name="user-password-check" type="password" value={PasswordCheck} onChange={onChangePasswordCheck} required />
-          {PasswordError && <ErrorMessage>비밀번호가 일치하지 않습니다.</ErrorMessage>}
+          {PasswordError && <ErrorMessage>暗証番号が一致していません。</ErrorMessage>}
         </div>
         <div>
           <Checkbox name="user-term" checked={Term} onChange={onChangeTerm}>
             내 말을 잘 들을것
           </Checkbox>
-          {TermError && <ErrorMessage> 약관에 동의하셔야 합니다.</ErrorMessage>}
+          {TermError && <ErrorMessage> 同意してください。</ErrorMessage>}
         </div>
         <div style={{ marginTop: 10 }}>
-          <Button type="primary" htmlType="submit">
-            가입하기
-          </Button>
-          <Button onClick={signupform} type="danger">
-            뒤로가기
-          </Button>
+          <Button type="primary" htmlType="submit">登録</Button>
+          <Button onClick={signupform} type="danger">前のページ</Button>
         </div>
       </Form>
     </>
