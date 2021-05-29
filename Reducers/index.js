@@ -3,19 +3,6 @@ import { combineReducers } from "redux";
 import user from "./user";
 import post from "./post";
 
-export const loginAction = (data) => {
-  return {
-    type: "LOG_IN",
-    data,
-  };
-};
-
-export const logoutAction = (data) => {
-  return {
-    type: "LOG_OUT",
-  };
-};
-
 // 이런식으로 동적으로 하는게 좋다. 유저가 마음대로 이름 짓기 가능하게
 // const changeNickname = (data) => {
 //    return{

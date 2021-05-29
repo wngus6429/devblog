@@ -3,7 +3,7 @@ import { Card, Avatar, Button, Popover } from "antd";
 import { EditOutlined, EllipsisOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
 import NicknameEdit from "./NicknameEdit";
 import { useDispatch } from "react-redux";
-import { logoutAction } from "../Reducers/index";
+import { logoutAction } from "../Reducers/user";
 const { Meta } = Card;
 
 const UserProfile = () => {

@@ -22,4 +22,4 @@ parkDevblog.proTypes = {
   Component: propTypes.elementType.isRequired,
 };
 
-export default wrapper.withRedux(parkDevblog) ;
+export default wrapper.withRedux(parkDevblog);

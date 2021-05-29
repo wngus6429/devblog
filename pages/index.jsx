@@ -1,11 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import AppLayout from "../components/AppLayout";
+import { useDispatch, useSelector } from "react-redux";
+import PostCard from "../components/PostCard";
+import PostForm from "../components/PostForm";
+import { Button } from "antd";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const { mainPosts } = useSelector((state) => state.post);
+  const [write, setwrite] = useState(false);
+  const writeform = () => {
+    if (!write) {
+      setwrite(true);
+    } else {
+      setwrite(false);
+    }
+  };
   return (
     <>
       <AppLayout>
-        <div>Hello, Next~!</div>
+        {/* {me && <Button type={danger}>글쓰기</Button>} */}
+        {isLoggedIn && (
+          <Button type="danger" onClick={writeform}>
+            글쓰기
+          </Button>
+        )}
+        {write && <PostForm cancelform={setwrite} />}
+        {mainPosts.map((post) => (
+          <PostCard key={post.id} post={post} />
+        ))}
       </AppLayout>
     </>
   );

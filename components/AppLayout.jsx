@@ -48,11 +48,11 @@ const AppLayout = ({ children }) => {
         </Menu.Item>
       </Menu>
       <Row gutter={5}>
-        <Col xs={24} md={8}>
+        <Col xs={24} md={6}>
           <SideMenu />
           <Clock />
         </Col>
-        <Col xs={24} md={11}>
+        <Col xs={24} md={13}>
           {children}
         </Col>
         <Col xs={24} md={5}>

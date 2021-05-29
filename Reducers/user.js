@@ -37,8 +37,8 @@ const reducer = (state = initialState, action) => {
       return { ...state, isLoggedIn: true, user: action.data };
     case "LOG_OUT":
       return { ...state, isLoggedIn: false, user: null };
-    case "CHANGE_NICKNAME":
-      return { ...state, name: action.data };
+    // case "CHANGE_NICKNAME":
+    //   return { ...state, name: action.data };
     default:
       return state;
   }
