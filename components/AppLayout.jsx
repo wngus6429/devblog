@@ -19,7 +19,8 @@ const SearchInput = styled(Input.Search)`
 `;
 
 const AppLayout = ({ children }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { isLoggedIn } = useSelector((state) => state.user); //구조분해 할당, 성능차이 있으나 미미
+  //const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   //const [isLoggedIn, setisLoggedIn] = useState(false);
   const [signup, setsignup] = useState(false);

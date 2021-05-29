@@ -1,12 +1,13 @@
 import { createWrapper } from "next-redux-wrapper";
 import { applyMiddleware, compose, createStore } from "redux";
-//import {composeWithDevTools} from "redux-devtools-extension"
+import { composeWithDevTools } from "redux-devtools-extension";
 import reducer from "../reducers";
 
 const configureStore = () => {
   const middlewares = [];
   const enhancer =
     process.env.NODE_ENV === "production" ? compose(applyMiddleware(...middlewares)) : composeWithDevTools(applyMiddleware(...middlewares));
+  //중앙데이터가 안보이게 보안 지키기 위해 개발용일때는 devtool 연결하고 배포할때는 안 쓰이게끔
   const store = createStore(reducer, enhancer);
   return store;
 };
