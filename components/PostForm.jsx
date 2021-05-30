@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useEffect, useState } from "react";
 import { Form, Input, Button, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../reducers/post";
+import { UploadOutlined } from "@ant-design/icons";
 //import useinput from "../hooks/useinput";
 
 const PostForm = ({ cancelform }) => {
@@ -58,7 +59,9 @@ const PostForm = ({ cancelform }) => {
           <Input.TextArea value={Text} onChange={onChangeText} maxLength={140} placeholder="어그로 글 삭제, 꼬우면 나가셈" />
           <div>
             <input type="file" multiple hidden ref={imageInput} />
-            <Button onClick={onClickImageUpload}>イメージアップロード</Button>
+            <Button icon={<UploadOutlined />} onClick={onClickImageUpload}>
+              Click to Upload
+            </Button>
             <Button type="primary" style={{ float: "right" }} htmlType="submit">
               作成
             </Button>

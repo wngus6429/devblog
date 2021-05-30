@@ -48,14 +48,16 @@ const AppLayout = ({ children }) => {
         </Menu.Item>
       </Menu>
       <Row gutter={5}>
-        <Col xs={24} md={6}>
+        <Col xs={24} md={5}>
           <SideMenu />
+          <img src="https://user-images.githubusercontent.com/55697824/120096373-0898f900-c166-11eb-8d22-0bda29418a0c.gif" alt="" />
+          <img src="https://user-images.githubusercontent.com/55697824/120096397-3120f300-c166-11eb-875f-e0d85ecff6c3.gif" alt="" />
           <Clock />
         </Col>
-        <Col xs={24} md={13}>
+        <Col xs={24} md={15}>
           {children}
         </Col>
-        <Col xs={24} md={5}>
+        <Col xs={24} md={4}>
           {signup ? <Signup signupfo={setsignup} /> : isLoggedIn ? <UserProfile /> : <LoginForm signupfo={setsignup} />}
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/wngus6429?tab=repositories">
             GitHub
