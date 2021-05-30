@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { Card, Avatar, Button, Popover } from "antd";
-import { EditOutlined, EllipsisOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
+import { EditOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
 import NicknameEdit from "./NicknameEdit";
 import { useDispatch } from "react-redux";
 import { logoutAction } from "../Reducers/user";
@@ -22,7 +22,7 @@ const UserProfile = () => {
         <NicknameEdit homeprofile={setuserprofile} />
       ) : (
         <Card
-          style={{ width: 300 }}
+          style={{ width: 310 }}
           cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
           actions={[
             <SettingOutlined key="setting" />,

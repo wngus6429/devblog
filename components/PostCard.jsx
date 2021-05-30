@@ -1,9 +1,12 @@
 import React from "react";
-import { List, Avatar, Space } from "antd";
-import { MessageOutlined, LikeOutlined, StarOutlined } from "@ant-design/icons";
+import { List, Avatar, Space, Popover, Button } from "antd";
+import { MessageOutlined, LikeOutlined, StarOutlined,DeleteOutlined, EllipsisOutlined } from "@ant-design/icons";
+import PropTypes from "prop-types";
+import {useSelector} from "react-redux"
 
 const listData = [];
-for (let i = 0; i < 20; i++) {
+let postslength = 20
+for (let i = 0; i < postslength; i++) {
   listData.push({
     href: "https://ant.design",
     title: `Antd 디자인 패턴 ${i}`,
@@ -11,6 +14,7 @@ for (let i = 0; i < 20; i++) {
     description: "Ant Design, a design language for background applications, is refined by Ant UED Team.",
     content:
       "Antd의 PostCard 디자인",
+    messages: postslength-i
   });
 }
 
@@ -22,16 +26,28 @@ const IconText = ({ icon, text }) => (
 );
 
 const PostCard = ({ post }) => {
+  const {me} = useSelector(state => state.user)
+  const id = me?.id;
+  //me.id가 있으면 그 데이터가 들어가고 없으면 undefined
+  //옵셔널 체이닝 연산자라고 한다. optional chaining
+  //const id = useSelector(state => state.user.me?.id)
   return (
     <>
-      <List itemLayout="vertical" size="large" pagination={{ onChange: (page) => { console.log(page);}, pageSize: 3 }}
+      <List itemLayout="vertical" size="large" pagination={{ onChange: (page) => { console.log(page);}, pageSize: 5 }}
         dataSource={listData} footer={<div> <b>Ant Design</b> footer</div>}
         renderItem={(item) => (
           <List.Item key={item.title}
             actions={[
               <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
               <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
-              <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+              <IconText icon={MessageOutlined} text={item.messages} key="list-vertical-message" />, 
+              <Popover key="more" content={
+              <Button.Group>
+                {id && post.User.id === id ? (<><Button>Edit</Button><DeleteOutlined/></>) : (<Button>Report</Button>)}
+              </Button.Group>}
+          >
+              <EllipsisOutlined />
+              </Popover>,
             ]}
             extra={
               <img
@@ -48,6 +64,17 @@ const PostCard = ({ post }) => {
       />
     </>
   );
+};
+
+PostCard.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    User: PropTypes.object,
+    content: PropTypes.string,
+    createdAt: PropTypes.object,
+    Comments: PropTypes.arrayOf(PropTypes.object), //객체들의 배열
+    Images: PropTypes.arrayOf(PropTypes.object),
+  }).isRequired,
 };
 
 export default PostCard;

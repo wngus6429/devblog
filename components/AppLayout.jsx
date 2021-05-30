@@ -54,10 +54,10 @@ const AppLayout = ({ children }) => {
           <img src="https://user-images.githubusercontent.com/55697824/120096397-3120f300-c166-11eb-875f-e0d85ecff6c3.gif" alt="" />
           <Clock />
         </Col>
-        <Col xs={24} md={15}>
+        <Col xs={24} md={14}>
           {children}
         </Col>
-        <Col xs={24} md={4}>
+        <Col xs={24} md={5}>
           {signup ? <Signup signupfo={setsignup} /> : isLoggedIn ? <UserProfile /> : <LoginForm signupfo={setsignup} />}
           <a target="_blank" rel="noopener noreferrer" href="https://github.com/wngus6429?tab=repositories">
             GitHub

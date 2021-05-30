@@ -1,4 +1,4 @@
-export const initialState = { isLoggedIn: false, user: null, signUpDate: {}, loginData: {} };
+export const initialState = { isLoggedIn: false, me: null, signUpDate: {}, loginData: {} };
 //export 해둬야 index.js에서 모으지
 
 export const loginAction = (data) => {
@@ -34,9 +34,9 @@ changeNickname("boogicho");
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOG_IN":
-      return { ...state, isLoggedIn: true, user: action.data };
+      return { ...state, isLoggedIn: true, me: action.data };
     case "LOG_OUT":
-      return { ...state, isLoggedIn: false, user: null };
+      return { ...state, isLoggedIn: false, me: null };
     // case "CHANGE_NICKNAME":
     //   return { ...state, name: action.data };
     default:
