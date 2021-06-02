@@ -41,7 +41,7 @@ const PostCard = ({ post }) => {
   
   return (
     <>
-      <ListCard style={{alignSelf: "stretch"}} itemLayout="vertical" size="large" pagination={{ onChange: (page) => { console.log(page);}, pageSize: 5 }}
+      <ListCard style={{alignSelf: "stretch"}} itemLayout="vertical" size="large" pagination={{ onChange: (page) => { console.log(page);}, pageSize: 4 }}
         dataSource={listData} footer={<div> <b>Ant Design</b> footer</div>}
         renderItem={(item) => (
           <List.Item key={item.title}
