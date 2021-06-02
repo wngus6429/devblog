@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import AppLayout from "../components/AppLayout";
 import { useDispatch, useSelector } from "react-redux";
 import PostCard from "../components/PostCard";
 import PostForm from "../components/PostForm";
 import { Button } from "antd";
+import PostPost from "../components/PostPost";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
   const { mainPosts } = useSelector((state) => state.post);
   const [write, setwrite] = useState(false);
-  const writeform = () => {
-    if (!write) {
-      setwrite(true);
-    } else {
-      setwrite(false);
-    }
-  };
+  const writeform = useCallback(() => {
+    setwrite((truefalse) => !truefalse); //true , false 번갈아가며 가능
+    // if (!write) { setwrite(true);} else { setwrite(false);}
+  });
   return (
     <>
       <AppLayout>
@@ -26,10 +24,8 @@ const Home = () => {
             글쓰기
           </Button>
         )}
-        {write && <PostForm cancelform={setwrite} />}
-        {mainPosts.map((post) => (
-          <PostCard key={post.id} post={post} />
-        ))}
+        <PostPost />
+        {write ? <PostForm cancelform={setwrite} /> : mainPosts.map((post) => <PostCard key={post.id} post={post} />)}
       </AppLayout>
     </>
   );

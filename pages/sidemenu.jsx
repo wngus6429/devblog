@@ -20,7 +20,7 @@ const sidemenu = () => {
   };
   return (
     <>
-      <div style={{ width: 350 }}>
+      <div style={{ alignSelf: "stretch" }}>
         <Button type="primary" onClick={toggleCollapsed}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
         </Button>

@@ -47,7 +47,7 @@ const PostForm = ({ cancelform }) => {
   return (
     <>
       {isLoggedIn && (
-        <Form style={{ margin: "20px 0 20px" }} encType="multipart/form-data" onFinish={onSubmit}>
+        <Form style={{ margin: "20px 0 20px", alignSelf: "stretch" }} encType="multipart/form-data" onFinish={onSubmit}>
           <Input.Group compact>
             <Select defaultValue="React">
               <Option value="React">React</Option>
@@ -56,7 +56,7 @@ const PostForm = ({ cancelform }) => {
             <Input style={{ width: "50%" }} value={Title} onChange={onChangeTitle} placeholder="Input TiTle" />
             {/* <Input style={{ width: "50%" }} placeholder="Input Text" defaultValue="Xihu District, Hangzhou" /> */}
           </Input.Group>
-          <Input.TextArea value={Text} onChange={onChangeText} maxLength={140} placeholder="어그로 글 삭제, 꼬우면 나가셈" />
+          <Input.TextArea style={{ height: 700 }} value={Text} onChange={onChangeText} maxLength={9999} placeholder="어그로 글 삭제, 꼬우면 나가셈" />
           <div>
             <input type="file" multiple hidden ref={imageInput} />
             <Button icon={<UploadOutlined />} onClick={onClickImageUpload}>

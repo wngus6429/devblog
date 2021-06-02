@@ -1,20 +1,23 @@
-import React from "react";
+import React,{useState} from "react";
 import { List, Avatar, Space, Popover, Button } from "antd";
-import { MessageOutlined, LikeOutlined, StarOutlined,DeleteOutlined, EllipsisOutlined } from "@ant-design/icons";
+import { MessageOutlined, HeartTwoTone, HeartOutlined, StarOutlined,DeleteOutlined, EllipsisOutlined } from "@ant-design/icons";
 import PropTypes from "prop-types";
 import {useSelector} from "react-redux"
+import PostPost from "../components/PostPost"
+import styled from "styled-components";
 
 const listData = [];
 let postslength = 20
 for (let i = 0; i < postslength; i++) {
   listData.push({
-    href: "https://ant.design",
+    href: <PostPost/>,
     title: `Antd 디자인 패턴 ${i}`,
-    avatar: 'https://user-images.githubusercontent.com/55697824/120096260-60833000-c165-11eb-965e-4172ca7cb41e.PNG',
+    avatar: 'gu.png',
     description: "Ant Design, a design language for background applications, is refined by Ant UED Team.",
     content:
       "Antd의 PostCard 디자인",
-    messages: postslength-i
+    messages: postslength-i,
+    postimage:"./space.jpg"
   });
 }
 
@@ -24,22 +27,27 @@ const IconText = ({ icon, text }) => (
     {text}
   </Space>
 );
+const ListCard = styled(List)`
+  align-items: "stretch";
+`;
 
 const PostCard = ({ post }) => {
   const {me} = useSelector(state => state.user)
   const id = me?.id;
+  const [liked, setliked] = useState(false)
   //me.id가 있으면 그 데이터가 들어가고 없으면 undefined
   //옵셔널 체이닝 연산자라고 한다. optional chaining
   //const id = useSelector(state => state.user.me?.id)
+  
   return (
     <>
-      <List itemLayout="vertical" size="large" pagination={{ onChange: (page) => { console.log(page);}, pageSize: 5 }}
+      <ListCard style={{alignSelf: "stretch"}} itemLayout="vertical" size="large" pagination={{ onChange: (page) => { console.log(page);}, pageSize: 5 }}
         dataSource={listData} footer={<div> <b>Ant Design</b> footer</div>}
         renderItem={(item) => (
           <List.Item key={item.title}
             actions={[
               <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
-              <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+              <IconText icon={liked ? HeartTwoTone : HeartOutlined} text="156" key="list-vertical-like-o"/>,
               <IconText icon={MessageOutlined} text={item.messages} key="list-vertical-message" />, 
               <Popover key="more" content={
               <Button.Group>
@@ -49,13 +57,7 @@ const PostCard = ({ post }) => {
               <EllipsisOutlined />
               </Popover>,
             ]}
-            extra={
-              <img
-                width={272}
-                alt="logo"
-                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-              />
-            }
+            extra={<img width={300} alt="logo" src={item.postimage}/>}
           >
             <List.Item.Meta avatar={<Avatar src={item.avatar} />} title={<a href={item.href}>{item.title}</a>} description={item.description} />
             {item.content}

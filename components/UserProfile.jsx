@@ -22,7 +22,7 @@ const UserProfile = () => {
         <NicknameEdit homeprofile={setuserprofile} />
       ) : (
         <Card
-          style={{ width: 310 }}
+          style={{ alignSelf: "stretch" }}
           cover={<img alt="example" src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png" />}
           actions={[
             <SettingOutlined key="setting" />,
@@ -50,11 +50,7 @@ const UserProfile = () => {
             </Popover>,
           ]}
         >
-          <Meta
-            avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-            title="Card title"
-            description="This is the description"
-          />
+          <Meta avatar={<Avatar src="./sick.png" />} title="Card title" description="This is the description" />
         </Card>
       )}
     </>
